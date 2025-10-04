@@ -1,0 +1,109 @@
+<!-- Create a No Image placeholder image -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Create No Image Placeholder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .placeholder {
+            width: 300px;
+            height: 300px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .placeholder p {
+            text-align: center;
+            color: #777;
+            font-size: 16px;
+        }
+
+        .instructions {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>No Image Placeholder</h1>
+
+        <div class="placeholder">
+            <p>No Image<br>Available</p>
+        </div>
+
+        <p>Right-click on the placeholder above and select "Save image as..." to save it as "no-image.png"</p>
+
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Right-click the placeholder and save it as "no-image.png"</li>
+                <li>Save the file to: <code>c:\xampp\htdocs\ample\assets\images\no-image.png</code></li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Canvas-based alternative for generating a proper image
+        window.onload = function () {
+            const canvas = document.createElement('canvas');
+            canvas.width = 300;
+            canvas.height = 300;
+            const ctx = canvas.getContext('2d');
+
+            // Background
+            ctx.fillStyle = '#f5f5f5';
+            ctx.fillRect(0, 0, 300, 300);
+
+            // Border
+            ctx.strokeStyle = '#ddd';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(0, 0, 300, 300);
+
+            // Text
+            ctx.fillStyle = '#777';
+            ctx.font = '20px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('No Image', 150, 140);
+            ctx.fillText('Available', 150, 170);
+
+            // Replace the placeholder div with the canvas
+            const placeholder = document.querySelector('.placeholder');
+            placeholder.innerHTML = '';
+            placeholder.appendChild(canvas);
+
+            // Add download link
+            const downloadLink = document.createElement('a');
+            downloadLink.href = canvas.toDataURL('image/png');
+            downloadLink.download = 'no-image.png';
+            downloadLink.textContent = 'Download no-image.png';
+            downloadLink.style.display = 'block';
+            downloadLink.style.margin = '20px 0';
+            downloadLink.style.padding = '10px';
+            downloadLink.style.backgroundColor = '#4CAF50';
+            downloadLink.style.color = 'white';
+            downloadLink.style.textAlign = 'center';
+            downloadLink.style.textDecoration = 'none';
+            document.querySelector('.container').insertBefore(downloadLink, document.querySelector('.instructions'));
+        };
+    </script>
+</body>
+
+</html>

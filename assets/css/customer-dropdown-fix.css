@@ -1,0 +1,45 @@
+/* Customer Dropdown Specific Fixes */
+#customer_name+.select2-container {
+    width: 100% !important;
+}
+
+#customer_name+.select2-container .select2-selection--single {
+    height: 37px !important;
+    line-height: 35px !important;
+    border: 1px solid #ced4da !important;
+    border-radius: 0.25rem !important;
+}
+
+#customer_name+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-left: 12px !important;
+    color: #495057 !important;
+}
+
+#customer_name+.select2-container .select2-selection--single .select2-selection__arrow {
+    height: 35px !important;
+    right: 10px !important;
+}
+
+/* Ensure dropdown appears above other elements */
+.select2-container--default .select2-dropdown {
+    z-index: 9999 !important;
+}
+
+/* Fix for multiple Select2 containers issue */
+.select2-container {
+    display: block !important;
+}
+
+.select2-container.select2-container--default {
+    display: block !important;
+}
+
+/* Hide duplicate containers if they exist */
+.select2-container+.select2-container {
+    display: none !important;
+}
+
+/* Ensure only one select2 container per select element */
+.form-group .select2-container:not(:first-of-type) {
+    display: none !important;
+}

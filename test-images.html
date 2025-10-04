@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Path Test</title>
+</head>
+
+<body>
+    <h3>Testing Image Paths</h3>
+
+    <h4>Direct Path Test:</h4>
+    <img src="assets/images/products/product_P1758167450.png" alt="Direct Path"
+        style="width:100px;height:100px;border:1px solid #000;">
+
+    <h4>No Image Fallback Test:</h4>
+    <img src="assets/images/no-image.png" alt="No Image" style="width:100px;height:100px;border:1px solid #000;">
+
+    <h4>AJAX Test:</h4>
+    <div id="ajax-result"></div>
+
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $.ajax({
+            url: 'app/ajax/product_search.php',
+            method: 'POST',
+            data: {
+                search_products: 1,
+                search_term: 'lux'
+            },
+            dataType: 'json',
+            success: function (products) {
+                console.log('AJAX Response:', products);
+                let html = '<h5>AJAX Results:</h5>';
+                products.forEach(function (product) {
+                    html += '<div style="border:1px solid #ccc; padding:10px; margin:5px;">';
+                    html += '<img src="' + product.product_image + '" style="width:50px;height:50px;" onerror="console.log(\'Failed:\', this.src);">';
+                    html += '<span>' + product.product_name + '</span>';
+                    html += '<br><small>Image Path: ' + product.product_image + '</small>';
+                    html += '</div>';
+                });
+                $('#ajax-result').html(html);
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX Error:', error);
+                $('#ajax-result').html('Error: ' + error);
+            }
+        });
+    </script>
+</body>
+
+</html>

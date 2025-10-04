@@ -1,0 +1,39 @@
+/* Customer Management Styles */
+.member-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+#selectAll {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* Fix checkbox alignment in table cells */
+table.dataTable tbody td:first-child {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Make delete selected button more visible */
+#deleteSelected {
+    transition: all 0.3s ease;
+}
+
+#deleteSelected:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Add checkbox hover effect */
+.member-checkbox:hover,
+#selectAll:hover {
+    transform: scale(1.2);
+}
+
+/* Improve row styling for better UI */
+table.dataTable tbody tr:hover {
+    background-color: #f8f9fa !important;
+}
